@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中医问诊单</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>中医问诊单</h1>
+        <form id="questionnaireForm">
+            <div class="section">
+                <h2>身体不适</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="bodyPain" value="头部"> 头部（主要是后脑勺）疼痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyPain" value="颈肩"> 颈肩疼痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyPain" value="肩背"> 肩背疼痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyPain" value="全身"> 全身不适
+                    </label>
+                </div>
+                <div class="question">
+                    <label>全身不适症状（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="酸痛"> 酸痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="疼痛"> 疼痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="痹痛"> 痹痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="麻木"> 麻木
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="麻痹"> 麻痹
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="沉重"> 沉重
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="疲惫乏力"> 疲惫乏力
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bodyDiscomfort" value="嗜睡"> 嗜睡
+                    </label>
+                </div>
+                <div class="question">
+                    <label for="headacheLoc">如果有头痛，痛在哪个区域、部位？</label>
+                    <input type="text" id="headacheLoc" name="headacheLoc">
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>寒症</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="coldSymptoms" value="口中寡淡"> 口中寡淡
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldSymptoms" value="恶心"> 恶心
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldSymptoms" value="作呕"> 作呕
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldSymptoms" value="呕吐"> 呕吐
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="想吃热食"> 想吃热食
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="想喝热饮"> 想喝热饮
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="想吃香喝辣"> 想吃香喝辣
+                    </label>
+                </div>
+                <div class="question">
+                    <label>怕冷程度：</label>
+                    <select name="coldFear">
+                        <option value="不怕冷">不怕冷</option>
+                        <option value="稍怕冷">稍怕冷</option>
+                        <option value="很怕冷">很怕冷</option>
+                        <option value="极度怕冷">极度怕冷</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="coldExtremities" value="四肢厥逆"> 四肢厥逆
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldExtremities" value="手足厥冷"> 手足厥冷
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldExtremities" value="手足逆冷"> 手足逆冷
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="平常不敢吃冷食"> 平常不敢吃冷食
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="平常不敢喝冷饮"> 平常不敢喝冷饮
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="平常喜欢吃热食"> 平常喜欢吃热食
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldPreference" value="平常喜欢喝热饮"> 平常喜欢喝热饮
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="coldTrigger" value="着凉发作"> 病情会因着凉而发作或加重
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldTrigger" value="受冻发作"> 病情会因受冻而发作或加重
+                    </label>
+                    <label>
+                        <input type="checkbox" name="coldTrigger" value="寒冷发作"> 病情会因寒冷而发作或加重
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>热症</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="heatSymptoms" value="头面烘热"> 头面烘热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="heatSymptoms" value="头面胀热"> 头面胀热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="heatSymptoms" value="面红耳赤"> 面红耳赤
+                    </label>
+                </div>
+                <div class="question">
+                    <label>怕热程度：</label>
+                    <select name="heatFear">
+                        <option value="不怕热">不怕热</option>
+                        <option value="稍怕热">稍怕热</option>
+                        <option value="很怕热">很怕热</option>
+                        <option value="极度怕热">极度怕热</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>有无发烧：</label>
+                    <select name="fever">
+                        <option value="无发烧">无发烧</option>
+                        <option value="轻微发烧">轻微发烧（37.3-38℃）</option>
+                        <option value="中度发烧">中度发烧（38.1-39℃）</option>
+                        <option value="高烧">高烧（39℃以上）</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>五官不适（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="facialDiscomfort" value="眼部发热"> 眼部发热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="facialDiscomfort" value="耳部发热"> 耳部发热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="facialDiscomfort" value="口部发热"> 口部发热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="facialDiscomfort" value="鼻部发热"> 鼻部发热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="facialDiscomfort" value="咽喉发热"> 咽喉发热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="facialDiscomfort" value="五官疼痛"> 五官疼痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="chestDiscomfort" value="胸中烦热"> 胸中烦热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chestDiscomfort" value="心中烦热"> 心中烦热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chestDiscomfort" value="胸中烦闷"> 胸中烦闷
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chestDiscomfort" value="心中烦闷"> 心中烦闷
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chestDiscomfort" value="胸中闷热"> 胸中闷热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chestDiscomfort" value="心中闷热"> 心中闷热
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="mood" value="容易心烦"> 容易心烦
+                    </label>
+                    <label>
+                        <input type="checkbox" name="mood" value="容易烦躁"> 容易烦躁
+                    </label>
+                    <label>
+                        <input type="checkbox" name="mood" value="容易发脾气"> 容易发脾气
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="throatDiscomfort" value="咽喉肿胀"> 咽喉肿胀
+                    </label>
+                    <label>
+                        <input type="checkbox" name="throatDiscomfort" value="咽喉疼痛"> 咽喉疼痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>眼部症状（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="eyeSymptoms" value="眼睛干燥"> 眼睛干燥
+                    </label>
+                    <label>
+                        <input type="checkbox" name="eyeSymptoms" value="眼睛干涩"> 眼睛干涩
+                    </label>
+                    <label>
+                        <input type="checkbox" name="eyeSymptoms" value="红筋多"> 红筋多
+                    </label>
+                    <label>
+                        <input type="checkbox" name="eyeSymptoms" value="眼白发红"> 眼白发红
+                    </label>
+                    <label>
+                        <input type="checkbox" name="eyeSymptoms" value="眼白发黄"> 眼白发黄
+                    </label>
+                </div>
+                <div class="question">
+                    <label>唇舌颜色：</label>
+                    <select name="lipTongueColor">
+                        <option value="很红">很红</option>
+                        <option value="淡红">淡红</option>
+                        <option value="苍白">苍白</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="thirst" value="口渴"> 口渴
+                    </label>
+                    <label>
+                        <input type="checkbox" name="thirst" value="想喝水"> 想喝水
+                    </label>
+                </div>
+                <div class="question">
+                    <label>饮水量：</label>
+                    <select name="waterIntake">
+                        <option value="正常">正常</option>
+                        <option value="很少">很少</option>
+                        <option value="较多">较多</option>
+                        <option value="很多">很多</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="foodPreference" value="喜欢吃冷食"> 喜欢吃冷食
+                    </label>
+                    <label>
+                        <input type="checkbox" name="foodPreference" value="喜欢喝冷饮"> 喜欢喝冷饮
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="heatTrigger" value="遇热发作"> 病情会因遇热而发作或加重
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>排尿情况</h2>
+                <div class="question">
+                    <label>尿量：</label>
+                    <select name="urineVolume">
+                        <option value="正常">正常</option>
+                        <option value="偏少">偏少</option>
+                        <option value="偏多">偏多</option>
+                        <option value="很少">很少</option>
+                        <option value="很多">很多</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>尿色：</label>
+                    <select name="urineColor">
+                        <option value="清白">清白</option>
+                        <option value="淡黄">淡黄</option>
+                        <option value="深黄">深黄</option>
+                        <option value="黄赤">黄赤</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="urineDiscomfort" value="尿热"> 尿热
+                    </label>
+                    <label>
+                        <input type="checkbox" name="urineDiscomfort" value="尿痛"> 尿痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="urineDiscomfort" value="尿冷"> 尿冷
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="bladderDiscomfort" value="小腹胀满"> 小腹胀满
+                    </label>
+                    <label>
+                        <input type="checkbox" name="bladderDiscomfort" value="胀痛"> 胀痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>尿的气味：</label>
+                    <select name="urineSmell">
+                        <option value="正常">正常</option>
+                        <option value="气味较大">气味较大</option>
+                        <option value="几乎无味">几乎无味</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>尿液特征（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="urineCharacteristics" value="有油脂"> 有油脂
+                    </label>
+                    <label>
+                        <input type="checkbox" name="urineCharacteristics" value="浑浊"> 浑浊
+                    </label>
+                    <label>
+                        <input type="checkbox" name="urineCharacteristics" value="有沙粒"> 有沙粒
+                    </label>
+                    <label>
+                        <input type="checkbox" name="urineCharacteristics" value="浓密不散的泡沫"> 浓密不散的泡沫
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>虚实</h2>
+                <div class="question">
+                    <label>脉管：</label>
+                    <select name="pulseVessel">
+                        <option value="粗">粗</option>
+                        <option value="细">细</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>脉力：</label>
+                    <select name="pulseStrength">
+                        <option value="有力">有力</option>
+                        <option value="软弱无力">软弱无力</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>脉压：</label>
+                    <select name="pulsePressure">
+                        <option value="使劲一按就没有了">使劲一按就没有了</option>
+                        <option value="怎么按都按不停">怎么按都按不停</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="sweat" value="有汗出"> 有汗出
+                    </label>
+                </div>
+                <div class="question">
+                    <label>汗量：</label>
+                    <select name="sweatAmount">
+                        <option value="正常">正常</option>
+                        <option value="较少">较少</option>
+                        <option value="较多">较多</option>
+                        <option value="很少">很少</option>
+                        <option value="很多">很多</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>水</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="waterRetention" value="胃里积水"> 胃里有积水感
+                    </label>
+                    <label>
+                        <input type="checkbox" name="waterRetention" value="胃里积液"> 胃里有积液感
+                    </label>
+                    <label>
+                        <input type="checkbox" name="waterRetention" value="饮水不消化"> 饮水不消化
+                    </label>
+                    <label>
+                        <input type="checkbox" name="waterRetention" value="胃里水液晃动"> 胃里有水液晃动感
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="intestineWater" value="肠子水液流动"> 肠子里有水液流动声
+                    </label>
+                </div>
+                <div class="question">
+                    <label>舌头表面和边沿：</label>
+                    <select name="tongueCondition">
+                        <option value="干燥">干燥</option>
+                        <option value="湿润">湿润</option>
+                        <option value="很湿润">很湿润（如被水浸泡）</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>血</h2>
+                <div class="question">
+                    <label>舌唇颜色：</label>
+                    <select name="tongueLipColor">
+                        <option value="深红">深红</option>
+                        <option value="瘀红">瘀红</option>
+                        <option value="瘀黑">瘀黑</option>
+                        <option value="苍白">苍白</option>
+                        <option value="没有血色">没有血色</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>月经情况（女性填写）</h2>
+                <div class="question">
+                    <label>月经周期：</label>
+                    <select name="menstrualCycle">
+                        <option value="正常">正常</option>
+                        <option value="提前">提前</option>
+                        <option value="推后">推后</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>月经颜色：</label>
+                    <select name="menstrualColor">
+                        <option value="鲜红">鲜红</option>
+                        <option value="瘀黑">瘀黑</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>月经量：</label>
+                    <select name="menstrualVolume">
+                        <option value="正常">正常</option>
+                        <option value="偏少">偏少</option>
+                        <option value="偏多">偏多</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="menstrualCharacteristics" value="淋漓不尽"> 淋漓不尽
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualCharacteristics" value="很容易就干净"> 很容易就干净
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="menstrualPain" value="经痛"> 有经痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>经痛发生时间（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainTiming" value="来前痛"> 来前痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainTiming" value="来时痛"> 来时痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainTiming" value="排卵期痛"> 排卵期痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>经痛性质（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainType" value="拘挛扭痛"> 拘挛扭痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainType" value="胀满憋闷痛"> 胀满憋闷痛
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainType" value="针刺样刺痛"> 针刺样刺痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>经痛程度（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="头晕眼花"> 头晕眼花
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="视物模糊"> 视物模糊
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="直冒冷汗"> 直冒冷汗
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="手足冰冷"> 手足冰冷
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="全身虚脱无力"> 全身虚脱无力
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="恶心作呕"> 恶心作呕
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="直泛清口水"> 直泛清口水
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="耳鸣"> 耳鸣
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="心悸"> 心悸
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainSeverity" value="呼吸困难"> 呼吸困难
+                    </label>
+                </div>
+                <div class="question">
+                    <label>经痛持续时间：</label>
+                    <input type="text" name="menstrualPainDuration" placeholder="例如：2天">
+                </div>
+                <div class="question">
+                    <label>经痛缓解方式（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainRelief" value="自行缓解"> 自行缓解
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainRelief" value="喝热水缓解"> 喝热水缓解
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainRelief" value="热水袋热敷缓解"> 热水袋热敷缓解
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainRelief" value="睡一觉缓解"> 睡一觉缓解
+                    </label>
+                    <label>
+                        <input type="checkbox" name="menstrualPainRelief" value="其他"> 其他
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>痰</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="cough" value="有咳嗽"> 有咳嗽
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="phlegm" value="有痰"> 有痰
+                    </label>
+                </div>
+                <div class="question">
+                    <label>痰量：</label>
+                    <select name="phlegmAmount">
+                        <option value="正常">正常</option>
+                        <option value="较少">较少</option>
+                        <option value="较多">较多</option>
+                        <option value="很少">很少</option>
+                        <option value="很多">很多</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>痰质：</label>
+                    <select name="phlegmTexture">
+                        <option value="清稀">清稀</option>
+                        <option value="浓稠">浓稠</option>
+                        <option value="胶粘">胶粘</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>痰色：</label>
+                    <select name="phlegmColor">
+                        <option value="无色透明">无色透明</option>
+                        <option value="白色">白色</option>
+                        <option value="黄色">黄色</option>
+                        <option value="灰黑色">灰黑色</option>
+                        <option value="蓝色">蓝色</option>
+                        <option value="绿色">绿色</option>
+                        <option value="带血">带血</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>痰味：</label>
+                    <select name="phlegmSmell">
+                        <option value="无味">无味</option>
+                        <option value="有腥臭味">有腥臭味</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>脓</h2>
+                <div class="question">
+                    <label>皮肤问题（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="skinProblems" value="疮子"> 疮子
+                    </label>
+                    <label>
+                        <input type="checkbox" name="skinProblems" value="痘痘"> 痘痘
+                    </label>
+                    <label>
+                        <input type="checkbox" name="skinProblems" value="疖肿"> 疖肿
+                    </label>
+                    <label>
+                        <input type="checkbox" name="skinProblems" value="淋巴结肿大"> 淋巴结肿大
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="woundProblems" value="化脓"> 有化脓
+                    </label>
+                    <label>
+                        <input type="checkbox" name="woundProblems" value="溃疡"> 有溃疡
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="oralProblems" value="口腔溃疡"> 口腔有溃疡
+                    </label>
+                    <label>
+                        <input type="checkbox" name="oralProblems" value="咽喉溃疡"> 咽喉有溃疡
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>白带（女性填写）</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="leucorrhea" value="有白带"> 有白带
+                    </label>
+                </div>
+                <div class="question">
+                    <label>白带量：</label>
+                    <select name="leucorrheaAmount">
+                        <option value="正常">正常</option>
+                        <option value="较少">较少</option>
+                        <option value="较多">较多</option>
+                        <option value="很少">很少</option>
+                        <option value="很多">很多</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>白带性质（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="leucorrheaCharacteristics" value="稀薄"> 稀薄
+                    </label>
+                    <label>
+                        <input type="checkbox" name="leucorrheaCharacteristics" value="浓稠"> 浓稠
+                    </label>
+                    <label>
+                        <input type="checkbox" name="leucorrheaCharacteristics" value="清白透明"> 清白透明
+                    </label>
+                    <label>
+                        <input type="checkbox" name="leucorrheaCharacteristics" value="黄色"> 黄色
+                    </label>
+                    <label>
+                        <input type="checkbox" name="leucorrheaCharacteristics" value="有臭味"> 有臭味
+                    </label>
+                    <label>
+                        <input type="checkbox" name="leucorrheaCharacteristics" value="无味"> 无味
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>食</h2>
+                <div class="question">
+                    <label>胃口：</label>
+                    <select name="appetite">
+                        <option value="好">好</option>
+                        <option value="一般">一般</option>
+                        <option value="差">差</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="digestion" value="食物不消化"> 食物不消化
+                    </label>
+                </div>
+                <div class="question">
+                    <label>饮食偏好（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="dietPreference" value="蔬菜"> 喜欢吃蔬菜
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietPreference" value="肉食"> 喜欢吃肉食
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietPreference" value="米面"> 喜欢吃米面
+                    </label>
+                    <label>
+                        <input type="checkbox" name="dietPreference" value="水果"> 喜欢吃水果
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>便</h2>
+                <div class="question">
+                    <label>排便频率：</label>
+                    <select name="bowelFrequency">
+                        <option value="每天">每天</option>
+                        <option value="隔天">隔天</option>
+                        <option value="2-3天一次">2-3天一次</option>
+                        <option value="3天以上一次">3天以上一次</option>
+                        <option value="一天多次">一天多次</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>大便性状（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="干硬燥结"> 干硬燥结
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="羊矢样"> 羊矢样（小弹丸状）
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="成型"> 成型
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="粗"> 粗
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="细"> 细
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="软"> 软
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="稀烂"> 稀烂
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="水样"> 水样
+                    </label>
+                </div>
+                <div class="question">
+                    <label>大便气味：</label>
+                    <select name="stoolSmell">
+                        <option value="正常">正常</option>
+                        <option value="恶臭">恶臭</option>
+                        <option value="几乎无味">几乎无味</option>
+                        <option value="酸糗味">酸糗味</option>
+                        <option value="血腥味">血腥味</option>
+                        <option value="柏油样">柏油样</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="abdominalDiscomfort" value="腹中胀满"> 腹中胀满
+                    </label>
+                    <label>
+                        <input type="checkbox" name="abdominalDiscomfort" value="胀闷"> 胀闷
+                    </label>
+                    <label>
+                        <input type="checkbox" name="abdominalDiscomfort" value="胀痛"> 胀痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>腹部触诊：</label>
+                    <select name="abdominalPalpation">
+                        <option value="正常">正常</option>
+                        <option value="实硬有物">实硬有物</option>
+                        <option value="拒按">拒按</option>
+                        <option value="疼痛畏按">疼痛畏按</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>排便难易程度：</label>
+                    <select name="defecationDifficulty">
+                        <option value="正常">正常</option>
+                        <option value="易">易</option>
+                        <option value="难">难</option>
+                    </select>
+                </div>
+                <div class="question">
+                    <label>排便困难原因（如果有）：</label>
+                    <label>
+                        <input type="checkbox" name="defecationDifficultyReason" value="因为硬"> 因为硬
+                    </label>
+                    <label>
+                        <input type="checkbox" name="defecationDifficultyReason" value="堵住"> 堵住
+                    </label>
+                    <label>
+                        <input type="checkbox" name="defecationDifficultyReason" value="肠子扭痛"> 肠子扭痛
+                    </label>
+                </div>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="拉不干净"> 拉不干净
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="粘马桶"> 粘马桶
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="有痰涕样粘液"> 有痰涕样粘液
+                    </label>
+                    <label>
+                        <input type="checkbox" name="stoolCharacteristics" value="有泡沫"> 有泡沫
+                    </label>
+                </div>
+                <div class="question">
+                    <label>腹胀缓解情况：</label>
+                    <select name="bloatingRelief">
+                        <option value="嗳气后缓解">嗳气后缓解</option>
+                        <option value="放屁后缓解">放屁后缓解</option>
+                        <option value="始终胀着">始终胀着</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>其他症状</h2>
+                <div class="question">
+                    <label>
+                        <input type="checkbox" name="otherSymptoms" value="心悸"> 心悸
+                    </label>
+                    <label>
+                        <input type="checkbox" name="otherSymptoms" value="心慌"> 心慌
+                    </label>
+                    <label>
+                        <input type="checkbox" name="otherSymptoms" value="头晕"> 头晕
+                    </label>
+                    <label>
+                        <input type="checkbox" name="otherSymptoms" value="眼花"> 眼花
+                    </label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>既往病史</h2>
+                <div class="question">
+                    <label>慢性病史（可多选）：</label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="高血压"> 高血压
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="心脑血管疾病"> 心脑血管疾病
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="糖尿病"> 糖尿病
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="哮喘"> 哮喘
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="肺气肿"> 肺气肿
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="肝炎"> 肝炎
+                    </label>
+                    <label>
+                        <input type="checkbox" name="chronicDiseases" value="肾病"> 肾病
+                    </label>
+                </div>
+                <div class="question">
+                    <label for="otherDiseases">其他疾病（请说明）：</label>
+                    <textarea id="otherDiseases" name="otherDiseases" rows="3"></textarea>
+                </div>
+            </div>
+
+            <button type="submit">提交</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('questionnaireForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let formData = new FormData(this);
+            let result = '';
+
+            for (let [key, value] of formData.entries()) {
+                if (value !== '') {
+                    if (this.elements[key].type === 'checkbox') {
+                        if (!result.includes(key + ':')) {
+                            result += key + ': ' + value + '\n';
+                            //result += key + ': ' + value + '\n';
+                        } else {
+                            result = result.replace(new RegExp(key + ':.*\n'), match => match.trim() + ', ' + value + '\n');
+                        }
+                    } else {
+                        result += key + ': ' + value + '\n';
+                    }
+                }
+            }
+
+            navigator.clipboard.writeText(result).then(function() {
+                alert('问诊单内容已复制到剪贴板');
+            }, function() {
+                alert('复制失败，请手动复制以下内容：\n\n' + result);
+            });
+        });
+    </script>
+</body>
+</html>
